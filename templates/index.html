@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>
+        Task List
+    </title>
+</head>
+<body>
+<h1> Welcome to the DavideCulo App</h1>
+Here the task list: <br><br>
+<ul>
+
+    {% for task in tasks %}
+        <li>{{ task[1] }}</li>
+    {% endfor %}
+</ul>
+<form name="insertNew" action="{{ url_for('insert_page') }}" method="POST">
+    <input type="text" name="description"><input type="submit">
+</form>
+</body>
+</html>
