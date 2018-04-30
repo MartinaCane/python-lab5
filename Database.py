@@ -31,7 +31,7 @@ def read_from_db():
     return results
 
 
-def insert_new_task():
+def insert_new_task(newTask):
     """
     Function for insert a new task to the list and rewrite the list to a new file
     :param bot:
@@ -40,31 +40,32 @@ def insert_new_task():
     :return:
     """
 
-    query = "INSERT INTO tasks (todo) VALUES (%s)"
+    query = "INSERT INTO task (todo) VALUES (%s)"
 
     # connectione to database
     connection = pymysql.connect(user="root", password="Matrix9697", host="localhost", database="first")
 
     cursor = connection.cursor()
 
-    cursor.execute(query)
+    cursor.execute(query, (newTask,))
 
     connection.commit()
 
     cursor.close()
     connection.close()
 
+def delete_task(id_task):
 
-'''
-    if len(args) == 0:
-        answer = "You need to specify a task!!!"
-    else:
-        task = list()
-        task.append(" ".join(args))
-        tasks.append(task[0])
-        answer = "Task inserted successfully"
-        modify_db(task, 1)
+    query= "DELETE FROM task WHERE id_task=(%s)"
 
-read_from_db()'''
+    # connectione to database
+    connection = pymysql.connect(user="root", password="Matrix9697", host="localhost", database="first")
 
-#print(read_from_db())
+    cursor = connection.cursor()
+
+    cursor.execute(query, (id_task,))
+
+    connection.commit()
+
+    cursor.close()
+    connection.close()

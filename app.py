@@ -15,8 +15,17 @@ def index():
 @app.route('/insert_page', methods=["POST"])
 def insertTask():
     new=request.form['new_task']
+    print(new)
     Database.insert_new_task(new)
     return render_template("index.html", tasks=Database.read_from_db())
+
+
+@app.route('/delete_task/<id_task>')
+def delete(id_task):
+    print(id_task)
+    Database.delete_task(id_task)
+    return render_template("index.html", tasks=Database.read_from_db())
+
 
 
 if __name__ == '__main__':
