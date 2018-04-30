@@ -5,16 +5,23 @@
     </title>
 </head>
 <body>
-<h1> Welcome to the DavideCulo App</h1>
-Here the task list: <br><br>
+<h1> Welcome to the App</h1>
+Here there is your task list: <br><br>
 <ul>
 
     {% for task in tasks %}
         <li>{{ task[1] }}</li>
     {% endfor %}
 </ul>
-<form name="insertNew" action="{{ url_for('insert_page') }}" method="POST">
-    <input type="text" name="description"><input type="submit">
+<br><br>
+
+<form name="insertNew" action="{{ url_for('insertTask') }}" method="POST">
+
+    <h2>Insert a new task </h2><input type="text" name="new_task" va/>
+
+    <input type="submit" value="Confirm"/>
+
+
 </form>
 </body>
 </html>

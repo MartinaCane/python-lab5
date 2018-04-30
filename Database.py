@@ -22,13 +22,14 @@ def read_from_db():
     # fetch result from query
     results = cursor.fetchall()
     print(results)
-    x=dict()
+    x = dict()
     print(x)
 
     # close cursor and connection
     cursor.close()
     connection.close()
     return results
+
 
 def insert_new_task():
     """
@@ -39,6 +40,22 @@ def insert_new_task():
     :return:
     """
 
+    query = "INSERT INTO tasks (todo) VALUES (%s)"
+
+    # connectione to database
+    connection = pymysql.connect(user="root", password="Matrix9697", host="localhost", database="first")
+
+    cursor = connection.cursor()
+
+    cursor.execute(query)
+
+    connection.commit()
+
+    cursor.close()
+    connection.close()
+
+
+'''
     if len(args) == 0:
         answer = "You need to specify a task!!!"
     else:
@@ -48,4 +65,6 @@ def insert_new_task():
         answer = "Task inserted successfully"
         modify_db(task, 1)
 
-read_from_db()
+read_from_db()'''
+
+#print(read_from_db())
